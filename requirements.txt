@@ -1,0 +1,9 @@
+streamlit
+google-api-python-client
+google-generativeai
+faster-whisper
+gtts
+yt-dlp
+ffmpeg-python
+pandas
+numpy
