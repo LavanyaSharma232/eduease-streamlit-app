@@ -1,0 +1,10 @@
+# .streamlit/config.toml
+
+[server]
+# This tells Streamlit to not try to open a browser window on the server.
+headless = true
+
+[global]
+# This is the key line. It tells Streamlit to create its folder
+# locally within our app directory instead of the user's home directory.
+dataFrameSerialization = "legacy"
