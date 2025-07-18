@@ -1,20 +1,19 @@
+# EduEase: AI-Powered Learning from Video 🧠✨
+
+EduEase is a web application designed to make learning from online videos easier and more effective, especially for students with cognitive differences like ADHD. It transforms any YouTube educational video into a clear, structured, and interactive study guide.
+
+## The Problem EduEase Solves
+
+Watching long educational videos can be a challenge. It's easy to get distracted, miss key points, and passively consume information without retaining it. This is a significant barrier for neurodivergent learners. EduEase tackles this by converting passive video content into an **active, engaging, and digestible learning experience**, reducing cognitive load and dramatically improving retention.
+
+## ✨ Key Features
+
+-   **AI-Generated Study Guides:** Automatically creates a structured guide from any YouTube video with a title, summary, jargon buster, and mnemonics.
+-   **Visual Learning with Flowcharts:** Generates a "Key Concepts" flowchart using Graphviz to help visualize relationships between ideas.
+-   **Accessibility First (WCAG Compliant):**
+    -   Features a high-contrast, clean UI.
+    -   Includes an AI-generated audio summary for auditory learners.
+-   **Interactive Quizzes & Flashcards:** Instantly generates MCQs and Flashcards from the video's content to reinforce learning through active recall.
+-   **Personalized Learning Roadmap:** Suggests next-step videos from YouTube based on the video's topic and the user's self-assessed learning level.
+
 ---
-title: EduEase Demo
-emoji: 🚀
-colorFrom: red
-colorTo: red
-sdk: docker
-app_port: 8501
-tags:
-- streamlit
-pinned: false
-short_description: Streamlit template space
-license: mit
----
-
-# Welcome to Streamlit!
-
-Edit `/src/streamlit_app.py` to customize this app to your heart's desire. :heart:
-
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
