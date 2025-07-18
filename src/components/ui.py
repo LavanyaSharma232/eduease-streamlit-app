@@ -95,11 +95,18 @@ class UI:
         """
         st.markdown(css, unsafe_allow_html=True)
 
-    def render_header(self):
-        st.markdown("""
+    def render_header(self, user_name=None):
+        """Render the header with optional user greeting."""
+        greeting_html = ""
+        if user_name:
+            # Add a personalized greeting if the user name is provided
+            greeting_html = f'<p style="color: #AEC6CF; font-size: 1.2rem; text-align: center;">Welcome, {user_name}! 👋</p>'
+
+        st.markdown(f"""
         <div class="logo-container">
             <div class="logo-title">EduEase</div>
             <div class="logo-underline"></div>
+            {greeting_html}
         </div>
         """, unsafe_allow_html=True)
     
@@ -163,13 +170,22 @@ class UI:
         
         for section in sections:
             if not section.strip(): continue
-            if any(keyword in section for keyword in ["MCQ Quiz", "Flashcard Review"]): continue
+            # Exclude quiz sections and our new description section from generic rendering
+            if any(keyword in section for keyword in ["MCQ Quiz", "Flashcard Review", "Flowchart Description"]): continue
             
+            # --- MODIFY THE FLOWCHART LOGIC BELOW ---
             if "Key Concepts (for Flowchart)" in section:
                 graphviz_data = TextProcessor.parse_graphviz(section)
-                if graphviz_data: 
+                if graphviz_data:
                     st.markdown("### 🔗 Key Concepts Flowchart")
                     st.graphviz_chart(graphviz_data)
+                    # Now, render the text alternative right after the chart
+                    if st.session_state.flowchart_description:
+                        st.markdown(f"""
+                        <div style="background-color: #1E1E1E; border: 1px solid #333; border-radius: 10px; padding: 1rem; margin-top: -1rem; margin-bottom: 1rem;">
+                            <p style="margin-bottom: 0;"><strong>Chart Description (for screen readers):</strong> {st.session_state.flowchart_description}</p>
+                        </div>
+                        """, unsafe_allow_html=True)
             elif "Key Takeaways" in section:
                 st.markdown(TextProcessor.highlight_keywords(section), unsafe_allow_html=True)
             else:

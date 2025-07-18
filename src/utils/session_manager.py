@@ -6,7 +6,9 @@ class SessionManager:
 
     # Define the default state for the application
     DEFAULT_STATE = {
+        "user_name": None,
         "notes": "",
+        "flowchart_description": None,
         "video_url": "",
         "summary_audio_data": None,
         "mcq_questions": [],
@@ -32,4 +34,12 @@ class SessionManager:
     def reset_session(cls):
         """Resets the entire session state to its default values."""
         for key, default_value in cls.DEFAULT_STATE.items():
-            st.session_state[key] = default_value
+            if key not in ("notes_history", "user_name"): # <-- MODIFY THIS LINE
+                st.session_state[key] = default_value
+    
+
+    @classmethod
+    def clear_history(cls):
+        """Explicitly clears the notes history."""
+        # ADD THIS NEW METHOD
+        st.session_state.notes_history = []

@@ -28,10 +28,11 @@ The notes must ALWAYS include these sections, formatted in Markdown with `##` fo
 2.  ## Detailed Summary: A detailed, easy-to-understand summary.
 3.  ## Jargon Buster: Identify 2-3 complex terms. For each, provide a simple, one-sentence "in plain English" explanation.
 4.  ## Key Concepts (for Flowchart): Identify the core concepts and their relationships. Format them for a Graphviz flowchart inside a 'dot' code block.
-5.  ## Key Takeaways: A bulleted list of important points. Wrap 3-5 keywords in @@keyword@@ markers. **CRUCIAL: If the transcript discusses any mathematical formulas or equations, you MUST convert them into proper LaTeX format and include them in this section. For inline math, use single dollar signs (e.g., `$E=mc^2$`).**
-6.  ## Mnemonics: A unique and clever memory aid for a key fact.
-7.  ## MCQ Quiz: Generate 3-5 varied multiple-choice questions (what, why, how). Format THIS SECTION ONLY as a valid JSON array. Each object must have "question", "options", "correct_answer", and "hint" keys.
-8.  ## Flashcard Review: Generate 3-5 DIFFERENT open-ended questions for flashcard review (e.g., "Explain what X is."). Format THIS SECTION ONLY as a valid JSON array. Each object must have "question" and "answer" keys.
+5. ## Flowchart Description: **CRUCIAL: After the dot code block, add this specific heading. Write a single, concise sentence that describes the main process or relationship shown in the flowchart. This will be used as a text alternative for visually impaired users.**
+6.  ## Key Takeaways: A bulleted list of important points. Wrap 3-5 keywords in @@keyword@@ markers. **CRUCIAL: If the transcript discusses any mathematical formulas or equations, you MUST convert them into proper LaTeX format and include them in this section. For inline math, use single dollar signs (e.g., `$E=mc^2$`).**
+7.  ## Mnemonics: A unique and clever memory aid for a key fact.
+8.  ## MCQ Quiz: Generate 3-5 varied multiple-choice questions (what, why, how). Format THIS SECTION ONLY as a valid JSON array. Each object must have "question", "options", "correct_answer", and "hint" keys.
+9.  ## Flashcard Review: Generate 3-5 DIFFERENT open-ended questions for flashcard review (e.g., "Explain what X is."). Format THIS SECTION ONLY as a valid JSON array. Each object must have "question" and "answer" keys.
 """
         try:
             logger.info("Generating notes with Google AI.")
@@ -45,6 +46,17 @@ The notes must ALWAYS include these sections, formatted in Markdown with `##` fo
         except Exception as e:
             logger.critical(f"A critical error occurred with the Google AI API: {e}")
             return None
+        
+    def parse_flowchart_description(self, notes_text: str) -> Optional[str]:
+        """Extracts the plain-text description for the flowchart."""
+        logger.info("Parsing flowchart description.")
+        # This regex looks for the heading and captures all text until the next heading starts.
+        match = re.search(r'##\s*Flowchart\s*Description\s*\n(.*?)(?=##)', notes_text, re.DOTALL | re.IGNORECASE)
+        if match:
+            # .strip() removes any leading/trailing whitespace.
+            return match.group(1).strip()
+        logger.warning("Could not find a flowchart description in the notes.")
+        return None
 
     def extract_topic_from_summary(self, notes_text: str) -> Optional[str]:
         """Distills a concise search topic from the summary section of the notes."""
