@@ -17,3 +17,7 @@ Watching long educational videos can be a challenge. It's easy to get distracted
 -   **Personalized Learning Roadmap:** Suggests next-step videos from YouTube based on the video's topic and the user's self-assessed learning level.
 
 ---
+<img width="1920" height="1008" alt="Eduease Home Page" src="https://github.com/user-attachments/assets/8fa60fe9-3424-44ed-9100-2e65928fc0fc" />
+<img width="1920" height="1008" alt="Eduease" src="https://github.com/user-attachments/assets/286c7d36-80d6-498e-a7e8-bda04dfe77ed" />
+<img width="1920" height="1008" alt="Eduease" src="https://github.com/user-attachments/assets/42738ce1-9f46-43f0-b571-dbf8134c3e35" />
+<img width="1920" height="1008" alt="Eduease" src="https://github.com/user-attachments/assets/8d0d81a1-df03-4978-b12c-7f542874884a" />
